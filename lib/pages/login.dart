@@ -135,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                                 CupertinoButton(
                                   child: Text("Sign up",
                                   style: TextStyle(fontSize: 16, color: Colors.pinkAccent)),
+                                  onPressed: () => Navigator.pushNamed(context, "signup"),
                                 )
                               ],
                             ),
