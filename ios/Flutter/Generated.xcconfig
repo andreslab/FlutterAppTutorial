@@ -1,9 +1,9 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/macbookpro/Documents/flutter
-FLUTTER_APPLICATION_PATH=/Users/macbookpro/Desktop/chat_secreto
-FLUTTER_TARGET=/Users/macbookpro/Desktop/chat_secreto/lib/main.dart
+FLUTTER_ROOT=/Users/jaandrad/Desktop/ANDRES/FLUTTER/flutter
+FLUTTER_APPLICATION_PATH=/Users/jaandrad/Desktop/ANDRES/practica/flutter/proyecto_test/FlutterAppTutorial
+FLUTTER_TARGET=/Users/jaandrad/Desktop/ANDRES/practica/flutter/proyecto_test/FlutterAppTutorial/lib/main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios
-FLUTTER_FRAMEWORK_DIR=/Users/macbookpro/Documents/flutter/bin/cache/artifacts/engine/ios
+FLUTTER_FRAMEWORK_DIR=/Users/jaandrad/Desktop/ANDRES/FLUTTER/flutter/bin/cache/artifacts/engine/ios
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1

@@ -2,6 +2,7 @@ import 'package:chat_secreto/widgets/circle.dart';
 import 'package:chat_secreto/widgets/input_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,8 +10,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  //key que se agrega al Form para acceder a funciones
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState(){
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  }
+
+  _submit(){
+    _formKey.currentState.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //captura el tamano de la pantalla
     final size = MediaQuery.of(context).size;
 
     // TODO: implement build
@@ -74,10 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                               constraints:
                                   BoxConstraints(maxWidth: 350, minWidth: 350),
                               child: Form(
+                                key: _formKey,
                                                               child: Column(children: <Widget>[
-                                  InputText(label: "EMAIL ADDRESS",),
+                                  InputText(label: "EMAIL ADDRESS",
+                                  validator: (String text) {
+                                    if (text.contains("@")) {
+                                      return null;
+                                    }
+                                    return "Invalid Email";
+                                    },
+                                    inputType: TextInputType.emailAddress,),
                                   SizedBox(height: 30,),
-                                  InputText(label: "PASSWORD",)
+                                  InputText(label: "PASSWORD",
+                                  validator: (String text) {
+                                     if (text.isNotEmpty && text.length > 5) {
+                                      return null;
+                                    }
+                                    return "Invalid Password";
+                                  },
+                                  isSecure: true,)
                                 ],),
                               )
                             ),
@@ -89,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: EdgeInsets.symmetric(vertical: 17),
                                 color: Colors.pinkAccent,
                                 borderRadius: BorderRadius.circular(4),
-                                onPressed: () {},
+                                onPressed: () => _submit(),
                                 child: Text("Sign in",
                                     style: TextStyle(fontSize: 20)),
                               ),
@@ -106,7 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                                   style: TextStyle(fontSize: 16, color: Colors.pinkAccent)),
                                 )
                               ],
-                            )
+                            ),
+                            SizedBox(height: size.height*0.03,)
                           ],
                         )
                       ],

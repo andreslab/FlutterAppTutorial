@@ -1,10 +1,10 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/macbookpro/Documents/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/macbookpro/Desktop/chat_secreto"
-export "FLUTTER_TARGET=/Users/macbookpro/Desktop/chat_secreto/lib/main.dart"
+export "FLUTTER_ROOT=/Users/jaandrad/Desktop/ANDRES/FLUTTER/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/jaandrad/Desktop/ANDRES/practica/flutter/proyecto_test/FlutterAppTutorial"
+export "FLUTTER_TARGET=/Users/jaandrad/Desktop/ANDRES/practica/flutter/proyecto_test/FlutterAppTutorial/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
-export "FLUTTER_FRAMEWORK_DIR=/Users/macbookpro/Documents/flutter/bin/cache/artifacts/engine/ios"
+export "FLUTTER_FRAMEWORK_DIR=/Users/jaandrad/Desktop/ANDRES/FLUTTER/flutter/bin/cache/artifacts/engine/ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
