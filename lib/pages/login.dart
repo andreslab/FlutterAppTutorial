@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_secreto/widgets/circle.dart';
 import 'package:chat_secreto/widgets/input_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -136,6 +138,13 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Text("Sign up",
                                   style: TextStyle(fontSize: 16, color: Colors.pinkAccent)),
                                   onPressed: () => Navigator.pushNamed(context, "signup"),
+                                  //onPressed: () => sleep(),
+                                  /*onPressed: () {
+                                    sleep1().then((String text){
+                                      print(text);
+                                    });
+                                  },*/
+                                  //onPressed: () => process_1(),
                                 )
                               ],
                             ),
@@ -152,5 +161,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  //imprimir luego de 3 segundos
+  sleep(){
+    Future.delayed(Duration(seconds: 3), () => print("AWAKE"));
+  }
+
+  //luego de 3 segundos retorna un string
+  sleep1<String>(){
+    return Future.delayed(Duration(seconds: 3), () => "00000");
+  }
+
+  //funcion asincrona en la funcion princiapl que llama
+  void process_1() async {
+    final text = await sleep1();
+    print(text);
   }
 }
