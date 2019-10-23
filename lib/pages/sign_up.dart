@@ -17,6 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _authAPI = AuthAPI();
 
   var _username = '', _email = '', _password = '';
+  var _isFetching = false;
 
   @override
   void initState(){
@@ -25,10 +26,19 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   _submit() async{
+    if (_isFetching) return;
     final isValid = _formKey.currentState.validate();
     if (isValid){
+
+      setState(() {
+        _isFetching = true;
+      });
       //call request
-      final isOk = await _authAPI.register(username : _username, email : _email, password: _password);
+      final isOk = await _authAPI.register(context, username : _username, email : _email, password: _password);
+      
+      setState(() {
+        _isFetching = false;
+      });
       if (isOk){
         print("REGISTER");
       }
@@ -184,6 +194,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               )
+            ,_isFetching ? Positioned.fill(
+                child: Container(
+                  color: Colors.black45,
+                  child: CupertinoActivityIndicator(
+                    radius: 15,
+                  ),
+                ),
+              ) : Container()
             ],
           ),
         ),

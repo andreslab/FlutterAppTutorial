@@ -5,6 +5,7 @@ import 'package:chat_secreto/widgets/input_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../api/auth_api.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,6 +16,10 @@ class _LoginPageState extends State<LoginPage> {
 
   //key que se agrega al Form para acceder a funciones
   final _formKey = GlobalKey<FormState>();
+  final _authAPI = AuthAPI();
+  var _isFetching = false;
+
+  var _email = '', _password = '';
 
   @override
   void initState(){
@@ -22,8 +27,27 @@ class _LoginPageState extends State<LoginPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   }
 
-  _submit(){
-    _formKey.currentState.validate();
+  _submit() async{
+
+    if (_isFetching) return;
+
+    final isValid = _formKey.currentState.validate();
+    if(isValid) {
+      //se usa setState para que el cambio de varible pueda afectar a la interfaz
+      setState(() {
+        _isFetching = true;
+      });
+      //se escribe await porque devuelve un Future
+      final isOk = await _authAPI.login(context, email: _email, password: _password);
+      
+      setState(() {
+        _isFetching = false;
+      });
+      
+      if (isOk) {
+        print("LOGIN OK");
+      }
+    }
   }
 
   @override
@@ -97,6 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                   InputText(label: "EMAIL ADDRESS",
                                   validator: (String text) {
                                     if (text.contains("@")) {
+                                      _email = text;
                                       return null;
                                     }
                                     return "Invalid Email";
@@ -106,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                                   InputText(label: "PASSWORD",
                                   validator: (String text) {
                                      if (text.isNotEmpty && text.length > 5) {
+                                       _password = text;
                                       return null;
                                     }
                                     return "Invalid Password";
@@ -156,6 +182,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               )
+              ,_isFetching ? Positioned.fill(
+                child: Container(
+                  color: Colors.black45,
+                  child: CupertinoActivityIndicator(
+                    radius: 15,
+                  ),
+                ),
+              ) : Container()
             ],
           ),
         ),
