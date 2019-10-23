@@ -6,8 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart' show required;
 import '../app_config.dart';
+import '../utils/session.dart';
 
 class AuthAPI {
+
+  final _session = Session();
   //obtiene una respuesya futura
   Future<bool> register(BuildContext context, 
   {@required String username, 
@@ -27,7 +30,9 @@ class AuthAPI {
         final token = parsed["token"] as String;
         final expiresIn = parsed["expiresIn"] as int;
         print("response 200: ${response.body}");
+        
         //save token
+        await _session.set(token, expiresIn);
 
         return true;
       }else if (response.statusCode == 500){
@@ -63,7 +68,9 @@ class AuthAPI {
         final token = parsed["token"] as String;
         final expiresIn = parsed["expiresIn"] as int;
         print("response 200: ${response.body}");
+        
         //save token
+        await _session.set(token, expiresIn);
 
         return true;
       }else if (response.statusCode == 500){

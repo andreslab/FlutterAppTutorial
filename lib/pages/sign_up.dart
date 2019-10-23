@@ -41,6 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
       });
       if (isOk){
         print("REGISTER");
+        Navigator.pushNamed(context, "home");
       }
     }
   }

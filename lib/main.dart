@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
 import 'pages/sign_up.dart';
+import 'pages/home.dart';
+import 'pages/splash.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,10 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: LoginPage(),
+      home: SplashPage(),
       routes: {
         "login": (context) => LoginPage(),
-        "signup": (context) => SignUpPage()
+        "signup": (context) => SignUpPage(),
+        "home": (context) => HomePage(),
       },
     );
 

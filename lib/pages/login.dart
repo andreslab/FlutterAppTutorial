@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       
       if (isOk) {
         print("LOGIN OK");
+        Navigator.pushNamed(context, "home");
       }
     }
   }
